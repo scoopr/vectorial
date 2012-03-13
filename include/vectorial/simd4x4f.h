@@ -21,9 +21,13 @@ typedef struct {
 
 
 
-vectorial_inline simd4x4f simd4x4f_create(simd4f x, simd4f y, simd4f z, SIMD_PARAM(simd4f, w)) {
+vectorial_constexpr vectorial_inline simd4x4f simd4x4f_create(simd4f x, simd4f y, simd4f z, SIMD_PARAM(simd4f, w)) {
+    #ifdef VECTORIAL_USE_CONSTEXPR
+    return { x, y, z, w };
+    #else
     simd4x4f s = { x, y, z, w };
     return s;
+    #endif
 }
 
 

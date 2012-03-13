@@ -84,6 +84,14 @@
   #endif
 #endif
 
+#if defined(VECTORIAL_SCALAR) && __has_feature(cxx_constexpr)
+#define VECTORIAL_USE_CONSTEXPR
+#define vectorial_constexpr constexpr
+#else
+#define vectorial_constexpr
+#endif
+
+
 #ifdef __cplusplus
     // Hack around msvc badness
     #define SIMD_PARAM(t, p) const t& p

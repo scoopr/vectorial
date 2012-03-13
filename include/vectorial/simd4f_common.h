@@ -7,28 +7,48 @@
 #define VECTORIAL_SIMD4F_COMMON_H
 
 
-vectorial_inline simd4f simd4f_sum(simd4f v) { 
+vectorial_constexpr vectorial_inline simd4f simd4f_sum(simd4f v) { 
+    #if 0
     const simd4f s1 = simd4f_add(simd4f_splat_x(v), simd4f_splat_y(v));
     const simd4f s2 = simd4f_add(s1, simd4f_splat_z(v));
     const simd4f s3 = simd4f_add(s2, simd4f_splat_w(v));
     return s3;
+    #endif
+    return simd4f_add(
+             simd4f_add(
+               simd4f_add(simd4f_splat_x(v), 
+                          simd4f_splat_y(v)), 
+               simd4f_splat_z(v)), 
+             simd4f_splat_w(v));
 }
 
-vectorial_inline simd4f simd4f_dot4(simd4f lhs, simd4f rhs) {
+vectorial_constexpr vectorial_inline simd4f simd4f_dot4(simd4f lhs, simd4f rhs) {
     return simd4f_sum( simd4f_mul(lhs, rhs) );
 }
 
-vectorial_inline simd4f simd4f_dot3(simd4f lhs, simd4f rhs) {
+vectorial_constexpr vectorial_inline simd4f simd4f_dot3(simd4f lhs, simd4f rhs) {
+    #if 0
     const simd4f m = simd4f_mul(lhs, rhs);
     const simd4f s1 = simd4f_add(simd4f_splat_x(m), simd4f_splat_y(m));
     const simd4f s2 = simd4f_add(s1, simd4f_splat_z(m));
     return s2;
+    #endif
+
+    return simd4f_add(
+             simd4f_add(
+               simd4f_splat_x(simd4f_mul(lhs, rhs)), 
+               simd4f_splat_y(simd4f_mul(lhs, rhs))), 
+             simd4f_splat_z(simd4f_mul(lhs, rhs)));
 }
 
-vectorial_inline simd4f simd4f_dot2(simd4f lhs, simd4f rhs) {
+vectorial_constexpr vectorial_inline simd4f simd4f_dot2(simd4f lhs, simd4f rhs) {
+    #if 0
     const simd4f m = simd4f_mul(lhs, rhs);
     const simd4f s1 = simd4f_add(simd4f_splat_x(m), simd4f_splat_y(m));
     return s1;
+    #endif
+
+    return simd4f_add(simd4f_splat_x(simd4f_mul(lhs, rhs)), simd4f_splat_y(simd4f_mul(lhs, rhs)));
 }
 
 
@@ -44,15 +64,15 @@ vectorial_inline simd4f simd4f_length2(simd4f v) {
     return simd4f_sqrt( simd4f_dot2(v,v) );
 }
 
-vectorial_inline simd4f simd4f_length4_squared(simd4f v) {
+vectorial_constexpr vectorial_inline simd4f simd4f_length4_squared(simd4f v) {
     return simd4f_dot4(v,v);
 }
 
-vectorial_inline simd4f simd4f_length3_squared(simd4f v) {
+vectorial_constexpr vectorial_inline simd4f simd4f_length3_squared(simd4f v) {
     return simd4f_dot3(v,v);
 }
 
-vectorial_inline simd4f simd4f_length2_squared(simd4f v) {
+vectorial_constexpr vectorial_inline simd4f simd4f_length2_squared(simd4f v) {
     return simd4f_dot2(v,v);
 }
 
