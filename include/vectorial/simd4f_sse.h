@@ -159,9 +159,12 @@ vectorial_inline simd4f simd4f_dot3_splat(simd4f lhs,simd4f rhs) {
 #if defined(VECTORIAL_USE_SSE4_1)
     return _mm_dp_ps(lhs, rhs, 0x7f);
 #else
+    const unsigned int mask[] = { 0xffffffff, 0xffffffff, 0xffffffff, 0 };
     const simd4f m = _mm_mul_ps(lhs, rhs);
-    const simd4f s1 = _mm_add_ps(m, _mm_movehl_ps(m, m));
-    return _mm_add_ss(s1, _mm_shuffle_ps(s1, s1, 1));
+    const simd4f s0 = _mm_and_ps(m, _mm_load_ps((const float*)mask));
+    const simd4f s1 = _mm_add_ps(s0, _mm_movehl_ps(s0, s0));
+    const simd4f s2 = _mm_add_ss(s1, _mm_shuffle_ps(s1, s1, 1));
+    return _mm_shuffle_ps(s2,s2, 0);
 #endif
 }
 
