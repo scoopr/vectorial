@@ -132,6 +132,16 @@ vectorial_inline simd4f simd4f_madd(simd4f m1, simd4f m2, simd4f a) {
     return simd4f_add( simd4f_mul(m1, m2), a );
 }
 
+vectorial_inline float simd4f_dot3(simd4f lhs, simd4f rhs) {
+    _simd4f_union l = {lhs};
+    _simd4f_union r = {rhs};
+    return l.f[0] * r.f[0] + l.f[1] * r.f[1] + l.f[2] * r.f[2];
+}
+
+vectorial_inline simd4f simd4f_dot3_splat(simd4f lhs, simd4f rhs) {
+    const float d = simd4f_dot3(lhs, rhs);
+    return simd4f_create( d, d, d, d );
+}
 
 vectorial_inline simd4f simd4f_cross3(simd4f l, simd4f r) {
     _simd4f_union lhs = {l};
