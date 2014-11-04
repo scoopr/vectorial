@@ -157,7 +157,7 @@ vectorial_inline float simd4f_get_w(simd4f s) { _simd4f_union u={s}; return u.f[
 
 vectorial_inline simd4f simd4f_dot3_splat(simd4f lhs,simd4f rhs) {
 #if defined(VECTORIAL_USE_SSE4_1)
-    return _mm_dp_ps(lhs, rhs, 0x71);
+    return _mm_dp_ps(lhs, rhs, 0x7f);
 #else
     const simd4f m = _mm_mul_ps(lhs, rhs);
     const simd4f s1 = _mm_add_ps(m, _mm_movehl_ps(m, m));
