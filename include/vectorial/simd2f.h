@@ -24,7 +24,7 @@
 
         vectorial_inline std::ostream& operator<<(std::ostream& os, const simd2f& v) {
             os << "simd2f(" << simd2f_get_x(v) << ", "
-                       << simd4f_get_y(v) << ")";
+                       << simd2f_get_y(v) << ")";
             return os;
         }
     #endif
