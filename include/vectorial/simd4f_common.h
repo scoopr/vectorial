@@ -31,7 +31,7 @@ vectorial_inline simd4f simd4f_length4(simd4f v) {
 }
 
 vectorial_inline simd4f simd4f_length3(simd4f v) {
-    return simd4f_sqrt( simd4f_splat( simd4f_dot3(v,v) ) );
+    return simd4f_sqrt( simd4f_dot3(v,v) );
 }
 
 vectorial_inline simd4f simd4f_length2(simd4f v) {
@@ -43,11 +43,11 @@ vectorial_inline simd4f simd4f_length4_squared(simd4f v) {
 }
 
 vectorial_inline simd4f simd4f_length3_squared(simd4f v) {
-    return simd4f_dot3_splat(v,v);
+    return simd4f_dot3(v,v);
 }
 
 vectorial_inline float simd4f_length3_squared_scalar(simd4f v) {
-    return simd4f_dot3(v,v);
+    return simd4f_dot3_scalar(v,v);
 }
 
 vectorial_inline simd4f simd4f_length2_squared(simd4f v) {
@@ -61,7 +61,7 @@ vectorial_inline simd4f simd4f_normalize4(simd4f a) {
 }
 
 vectorial_inline simd4f simd4f_normalize3(simd4f a) {
-    simd4f invlen = simd4f_rsqrt( simd4f_splat( simd4f_dot3(a,a) ) );
+    simd4f invlen = simd4f_rsqrt( simd4f_dot3(a,a) );
     return simd4f_mul(a, invlen);
 }
 

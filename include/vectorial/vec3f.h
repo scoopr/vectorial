@@ -143,7 +143,7 @@ namespace vectorial {
 
 
     vectorial_inline float dot(const vec3f& lhs, const vec3f& rhs) {
-        return simd4f_dot3(lhs.value, rhs.value);
+        return simd4f_dot3_scalar(lhs.value, rhs.value);
     }
 
     vectorial_inline vec3f cross(const vec3f& lhs, const vec3f& rhs) {

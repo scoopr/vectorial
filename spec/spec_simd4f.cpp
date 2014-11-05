@@ -242,20 +242,20 @@ describe(simd4f, "vector math") {
         should_be_equal_simd4f(x, simd4f_create(300.000000000000000f, 300.000000000000000f, 300.000000000000000f, 300.000000000000000f), epsilon );
     }
 
-    it("should have simd4f_dot3 for three component dot product returning float") {
+    it("should have simd4f_dot3_scalar for three component dot product returning float") {
         simd4f a = simd4f_create(1,2,3,9999);
         simd4f b = simd4f_create(10,20,30,-9990);
         
-        float x = simd4f_dot3(a,b);
+        float x = simd4f_dot3_scalar(a,b);
         // octave float: dot([1, 2, 3], [10, 20, 30])
         should_be_close_to(x, 140.000000000000000f, epsilon );
     }
 
-    it("should have simd4f_dot3_splat for three component dot product returning simd4f") {
+    it("should have simd4f_dot3 for three component dot product returning simd4f") {
         simd4f a = simd4f_create(1,2,3,9999);
         simd4f b = simd4f_create(10,20,30,-9990);
         
-        simd4f x = simd4f_dot3_splat(a,b);
+        simd4f x = simd4f_dot3(a,b);
         // octave simd4f: [dot([1, 2, 3], [10, 20, 30]),dot([1, 2, 3], [10, 20, 30]),dot([1, 2, 3], [10, 20, 30]),dot([1, 2, 3], [10, 20, 30])]
         should_be_equal_simd4f(x, simd4f_create(140.000000000000000f, 140.000000000000000f, 140.000000000000000f, 140.000000000000000f), epsilon );
     }

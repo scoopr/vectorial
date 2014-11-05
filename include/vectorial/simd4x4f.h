@@ -212,9 +212,9 @@ vectorial_inline void simd4x4f_lookat(simd4x4f *m, simd4f eye, simd4f center, si
 
     zaxis = simd4f_sub( simd4f_zero(), zaxis);
 
-    float x = -simd4f_dot3(xaxis, eye);
-    float y = -simd4f_dot3(yaxis, eye);
-    float z = -simd4f_dot3(zaxis, eye);
+    float x = -simd4f_dot3_scalar(xaxis, eye);
+    float y = -simd4f_dot3_scalar(yaxis, eye);
+    float z = -simd4f_dot3_scalar(zaxis, eye);
 
     m->x = xaxis;
     m->y = yaxis;

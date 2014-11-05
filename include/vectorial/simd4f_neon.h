@@ -189,15 +189,15 @@ vectorial_inline float simd4f_get_z(simd4f s) { return vgetq_lane_f32(s, 2); }
 vectorial_inline float simd4f_get_w(simd4f s) { return vgetq_lane_f32(s, 3); }
 
 // This function returns x*x+y*y+z*z and ignores the w component.
-vectorial_inline float simd4f_dot3(simd4f lhs, simd4f rhs) {
+vectorial_inline float simd4f_dot3_scalar(simd4f lhs, simd4f rhs) {
     const simd4f m = simd4f_mul(lhs, rhs);
     simd2f s1 = vpadd_f32(vget_low_f32(m), vget_low_f32(m));
     s1 = vadd_f32(s1, vget_high_f32(m));
     return vget_lane_f32(s1, 0);
 }
 
-vectorial_inline simd4f simd4f_dot3_splat(simd4f lhs, simd4f rhs) {
-    return simd4f_splat(simd4f_dot3(lhs, rhs));
+vectorial_inline simd4f simd4f_dot3(simd4f lhs, simd4f rhs) {
+    return simd4f_splat(simd4f_dot3_scalar(lhs, rhs));
 }
 
 vectorial_inline simd4f simd4f_cross3(simd4f lhs, simd4f rhs) {
