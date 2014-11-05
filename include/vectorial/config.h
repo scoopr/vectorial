@@ -41,6 +41,7 @@
 
 #ifdef VECTORIAL_NEON
     #define VECTORIAL_SIMD_TYPE "neon"
+    #define VECTORIAL_HAVE_SIMD2F
 #endif
 
 #ifdef VECTORIAL_GNU
