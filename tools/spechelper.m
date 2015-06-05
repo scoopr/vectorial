@@ -10,7 +10,11 @@ function spec_formatter (val,type)
     endif
 
     if( size(val) == [1,2] ) 
+        if( strcmp(type,"simd2f") == 1 )
+        printf("        should_be_equal_%s(x, simd2f_create(%15.15ff, %15.15ff), epsilon );",type, val(1), val(2));
+        else
         printf("        should_be_equal_%s(x, simd4f_create(%15.15ff, %15.15ff, 0.0f, 0.0f), epsilon );",type, val(1), val(2));
+        endif
         return;
     endif
 
