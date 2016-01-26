@@ -159,7 +159,7 @@ vectorial_inline simd4f simd4f_dot3(simd4f lhs,simd4f rhs) {
 #if defined(VECTORIAL_USE_SSE4_1)
     return _mm_dp_ps(lhs, rhs, 0x7f);
 #else
-    const unsigned int mask_array[] = { 0xffffffff, 0xffffffff, 0xffffffff, 0 };
+    simd4f_aligned16 const unsigned int mask_array[] = { 0xffffffff, 0xffffffff, 0xffffffff, 0 };
     const simd4f mask = _mm_load_ps((const float*)mask_array);
     const simd4f m = _mm_mul_ps(lhs, rhs);
     const simd4f s0 = _mm_and_ps(m, mask);
