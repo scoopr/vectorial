@@ -12,7 +12,8 @@
 
         #define VECTORIAL_SSE
 
-    #elif defined(__ARM_NEON__) 
+    // __ARM_NEON is used instead of __ARM_NEON__ on armv8.
+    #elif defined(__ARM_NEON__) || defined(__ARM_NEON)
 
         #define VECTORIAL_NEON
 
