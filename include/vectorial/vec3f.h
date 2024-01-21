@@ -5,6 +5,7 @@
   Licensed under the terms of the two-clause BSD License (see LICENSE)
 */
 #ifndef VECTORIAL_VEC3F_H
+#define VECTORIAL_VEC3F_H
 
 #ifndef VECTORIAL_SIMD4F_H
   #include "vectorial/simd4f.h"
